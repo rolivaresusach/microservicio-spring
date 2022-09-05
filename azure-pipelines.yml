@@ -57,3 +57,37 @@ steps:
   inputs:
     pollingTimeoutSec: '300'
   displayName: 'Publish Analysis Results'
+
+- task: DownloadBuildArtifacts@0
+  inputs:
+    buildType: 'current'
+    downloadType: 'single'
+    artifactName: 'appJar'
+    downloadPath: '$(Pipeline.Workspace)'
+  displayName: Descarga Jar
+    
+- script: "mkdir -p build/libs; mv $(Pipeline.Workspace)/appJar/build/libs/ build/; chmod -R 555 build/libs"  
+  displayName:  Se mueve JAR a carpeta raiz
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'docker-hub-usach'
+    command: 'login'
+  displayName: Docker registry login
+    
+- task: Docker@2
+  inputs:
+    containerRegistry: 'docker-hub-usach'
+    repository: 'rolivaresdiplomados/tarea1'
+    command: 'build'
+    Dockerfile: '**/Dockerfile'
+    tags: latest
+  displayName: Build Image
+
+- task: Docker@2
+  displayName: Docker push
+  inputs:
+    containerRegistry: 'docker-hub-usach'
+    repository: 'rolivaresdiplomados/tarea1'
+    command: 'push'
+    tags: 'latest'
