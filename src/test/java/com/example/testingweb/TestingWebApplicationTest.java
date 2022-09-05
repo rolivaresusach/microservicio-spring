@@ -1,6 +1,7 @@
 package com.example.testingweb;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -21,8 +22,13 @@ public class TestingWebApplicationTest {
 	private MockMvc mockMvc;
 
 	@Test
+	public void main() {
+		assertDoesNotThrow(() -> TestingWebApplication.main(new String[] {}));
+	}
+	
+	@Test
 	public void shouldReturnDefaultMessage() throws Exception {
 		this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
-				.andExpect(content().string(containsString("Hello, World")));
+				.andExpect(content().string(containsString("Rodrigo Olivares")));
 	}
 }
