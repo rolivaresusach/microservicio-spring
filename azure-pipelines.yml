@@ -22,6 +22,7 @@ steps:
       contents: |
         **/build/libs/*.jar
         **/build/**/*.xml
+        **/application.properties
       targetFolder: '$(Build.ArtifactStagingDirectory)'
 
   - task: PublishBuildArtifacts@1
