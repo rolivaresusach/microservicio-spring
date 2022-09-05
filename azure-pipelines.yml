@@ -84,7 +84,7 @@ steps:
   - task: Docker@2
     inputs:
       containerRegistry: 'docker-hub-usach'
-      repository: 'tarea1'
+      repository: 'rolivaresdiplomados/tarea1'
       command: 'build'
       Dockerfile: '**/Dockerfile'
       tags: latest
@@ -94,6 +94,6 @@ steps:
     displayName: Docker push
     inputs:
       containerRegistry: 'docker-hub-usach'
-      repository: 'tarea1'
+      repository: 'rolivaresdiplomados/tarea1'
       command: 'push'
       tags: 'latest'
