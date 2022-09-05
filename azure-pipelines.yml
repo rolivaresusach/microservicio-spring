@@ -58,6 +58,8 @@ steps:
   inputs:
     pollingTimeoutSec: '300'
   displayName: 'Publish Analysis Results'
+  
+
 
 - task: DownloadBuildArtifacts@0
   inputs:
@@ -86,10 +88,3 @@ steps:
     tags: latest
   displayName: Build Image
 
-- task: Docker@2
-  displayName: Docker push
-  inputs:
-    containerRegistry: 'docker-hub-usach'
-    repository: 'tarea1'
-    command: 'push'
-    tags: 'latest'
