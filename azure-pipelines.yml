@@ -43,7 +43,6 @@ steps:
     displayName: 'Sonarqube prepare'
     inputs:
       SonarCloud: 'sonar-cloud-usach'
-      scannerMode: 'Other'
       organization: 'cl-usach-diplomados-rolivares'
       projectKey: 'devops-foundation-ms'
       projectName: 'devops-foundation-ms'
