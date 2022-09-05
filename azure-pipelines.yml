@@ -70,7 +70,8 @@ steps:
       downloadType: 'single'
       artifactName: 'appJar'
       downloadPath: '$(Pipeline.Workspace)'
-    displayName: Descarga Jar
+    displayName: 'Docker artifact'
+    
   - script: 'mkdir -p build/libs; mv $(Pipeline.Workspace)/appJar/build/libs/ build/; chmod -R 555 build/libs'
     displayName: 'Docker artifact'
 
@@ -88,3 +89,11 @@ steps:
       Dockerfile: '**/Dockerfile'
       tags: latest
     displayName: 'Docker build'
+
+  - task: Docker@2
+    displayName: Docker push
+    inputs:
+      containerRegistry: 'Docker'
+      repository: 'clagosu/pet-clinic'
+      command: 'push'
+      tags: 'latest'
