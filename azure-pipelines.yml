@@ -65,6 +65,7 @@ steps:
     displayName: 'SonarQube publish'
 
   - task: sonarcloud-buildbreaker@2
+    displayName: 'Quality Gate'
     inputs:
       SonarCloud: 'sonar-cloud-usach'
       organization: 'cl-usach-diplomados-rolivares'
@@ -78,16 +79,16 @@ steps:
     displayName: 'Docker artifact'
 
   - script: 'mkdir -p build/libs; mv $(Pipeline.Workspace)/appJar/build/libs/ build/; chmod -R 555 build/libs'
-    displayName: 'Docker artifact'
+    displayName: 'Artifact prepare'
 
   - task: Docker@2
-    displayName: 'Docker Registry login'
+    displayName: 'Registry Login'
     inputs:
       containerRegistry: 'docker-hub-usach'
       command: 'login'
 
-   
   - task: Docker@2
+    displayName: 'Docker Push'
     inputs:
       containerRegistry: 'docker-hub-usach'
       repository: 'rolivaresdiplomados/tarea1'
