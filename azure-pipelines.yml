@@ -76,15 +76,7 @@ steps:
     command: 'login'
   displayName: Docker registry login
     
-- task: Docker@2
-  inputs:
-    containerRegistry: 'docker-hub-usach'
-    repository: 'tarea1'
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
-    tags: latest
-  displayName: Build Image
-  
+ 
 - task: Docker@2
   inputs:
     containerRegistry: 'docker-hub-usach'
