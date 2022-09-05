@@ -94,6 +94,6 @@ steps:
     displayName: Docker push
     inputs:
       containerRegistry: 'docker-hub-usach'
-      repository: 'rolivaresdiplomados/tarea1'
+      repository: 'tarea1'
       command: 'push'
       tags: 'latest'
