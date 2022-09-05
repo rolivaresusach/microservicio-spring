@@ -40,14 +40,15 @@ steps:
     displayName: 'SonarQube artifact'
 
   - task: SonarCloudPrepare@1
+    displayName: 'Sonarqube prepare'
     inputs:
       SonarCloud: 'sonar-cloud-usach'
+      scannerMode: 'Other'
       organization: 'cl-usach-diplomados-rolivares'
       projectKey: 'devops-foundation-ms'
       projectName: 'devops-foundation-ms'
       extraProperties: |
         sonar.coverage.jacoco.xmlReportPaths=$(Pipeline.Workspace)/appJar/build/reports/jacoco/test/jacocoTestReport.xml
-    displayName: 'Sonarqube prepare'
 
   - task: Gradle@3
     inputs:
