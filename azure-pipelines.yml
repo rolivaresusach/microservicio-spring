@@ -64,6 +64,9 @@ steps:
       pollingTimeoutSec: '300'
     displayName: 'SonarQube publish'
 
+  - task: sonar-buildbreaker@8
+    inputs:
+      SonarQube: 'sonar-qube-usach'
   - task: DownloadBuildArtifacts@0
     inputs:
       buildType: 'current'
