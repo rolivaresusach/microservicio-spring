@@ -1,6 +1,7 @@
 package com.example.testingweb;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -24,7 +25,7 @@ public class TestingWebApplicationTest {
 
 	@Test
 	public void main() {
-		TestingWebApplication.main(new String[] {});
+		assertDoesNotThrow(() -> TestingWebApplication.main(new String[] {}));
 	}
 
 	@Test
