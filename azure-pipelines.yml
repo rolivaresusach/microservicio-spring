@@ -84,3 +84,20 @@ steps:
     Dockerfile: '**/Dockerfile'
     tags: latest
   displayName: Build Image
+  
+- task: Docker@2
+  inputs:
+    containerRegistry: 'docker-hub-usach'
+    repository: 'tarea1'
+    command: 'build'
+    Dockerfile: '**/Dockerfile'
+    tags: latest
+  displayName: Build Image
+
+- task: Docker@2
+  displayName: Docker push
+  inputs:
+    containerRegistry: 'docker-hub-usach'
+    repository: 'tarea1'
+    command: 'push'
+    tags: 'latest'
