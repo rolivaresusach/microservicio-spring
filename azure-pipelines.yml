@@ -147,6 +147,6 @@ steps:
       URLApp=http://$ipApp:8080
       echo $URLApp
       echo "##vso[task.setvariable variable=appDeploy;isOutput=true]$URLApp"
-      name: getip
+    name: getip
     displayName: Get IP
 
