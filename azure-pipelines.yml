@@ -12,8 +12,8 @@ steps:
       publishJUnitResults: true
       testResultsFiles: '**/TEST-*.xml'
       javaHomeOption: 'JDKVersion'
-      sonarQubeRunAnalysis: false
-      spotBugsAnalysis: false
+      sonarQubeRunAnalysis: true
+      spotBugsAnalysis: true
 
   - task: CopyFiles@2
     displayName: 'Prepare artifact'
