@@ -94,6 +94,6 @@ steps:
       repository: 'rolivaresdiplomados/tarea1'
       command: 'buildAndPush'
       tags: |
-        'v$(Build.BuildId)'
-        'latest'
+        v$(Build.BuildId)
+        latest
       Dockerfile: '**/Dockerfile'
