@@ -1,4 +1,5 @@
-pool: 'Default'
+pool:
+  vmImage: ubuntu-latest
 
 steps:
 
@@ -65,8 +66,7 @@ steps:
     artifactName: 'appJar'
     downloadPath: '$(Pipeline.Workspace)'
   displayName: Descarga Jar
-- script: "dir"   
-#- script: "mkdir -p build/libs; mv $(Pipeline.Workspace)/appJar/build/libs/ build/; chmod -R 555 build/libs"  
+- script: "mkdir -p build/libs; mv $(Pipeline.Workspace)/appJar/build/libs/ build/; chmod -R 555 build/libs"  
 #- script: "mkdir -p build\\libs; mv $(Pipeline.Workspace)\\appJar\\build\\libs\\ build\\"
   displayName:  Se mueve JAR a carpeta raiz
 
@@ -76,10 +76,11 @@ steps:
     command: 'login'
   displayName: Docker registry login
     
+ 
 - task: Docker@2
   inputs:
     containerRegistry: 'docker-hub-usach'
-    repository: 'rolivaresdiplomados/tarea1'
+    repository: 'tarea1'
     command: 'build'
     Dockerfile: '**/Dockerfile'
     tags: latest
@@ -89,6 +90,6 @@ steps:
   displayName: Docker push
   inputs:
     containerRegistry: 'docker-hub-usach'
-    repository: 'rolivaresdiplomados/tarea1'
+    repository: 'tarea1'
     command: 'push'
     tags: 'latest'
