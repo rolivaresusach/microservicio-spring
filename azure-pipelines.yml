@@ -98,3 +98,32 @@ steps:
         v$(Build.BuildId)
         latest
       Dockerfile: '**/Dockerfile'
+
+  - task: KubectlInstaller@0
+    inputs:
+      kubectlVersion: 'latest' 
+
+  - task: Kubernetes@1
+    displayName: 'AKS Login'
+    inputs:
+      connectionType: 'Azure Resource Manager'
+      azureSubscriptionEndpoint: 'Azure subscription 1(466bb1af-53ab-4320-b72a-7ed8b321590b)'
+      azureResourceGroup: 'tarea1-cluster'
+      kubernetesCluster: 'tarea1-cluster'
+      namespace: 'default'
+      command: 'login'
+
+  - task: Kubernetes@1
+    displayName: 'AKS Deploy'
+    inputs:
+      connectionType: 'Azure Resource Manager'
+      azureSubscriptionEndpoint: 'Azure subscription 1(466bb1af-53ab-4320-b72a-7ed8b321590b)'
+      azureResourceGroup: 'tarea1-cluster'
+      kubernetesCluster: 'tarea1-cluster'
+      namespace: 'default'
+      command: 'apply'
+      arguments: '-f kubernetes/deployment-app.yaml'
+      secretType: 'dockerRegistry'
+      containerRegistryType: 'Azure Container Registry'
+      azureSubscriptionEndpointForSecrets: 'Azure subscription 1(466bb1af-53ab-4320-b72a-7ed8b321590b)'
+      azureContainerRegistry: 'tarea1registry.azurecr.io'
