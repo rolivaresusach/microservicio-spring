@@ -94,6 +94,6 @@ steps:
     displayName: Docker push
     inputs:
       containerRegistry: 'Docker'
-      repository: 'clagosu/pet-clinic'
+      repository: 'rolivaresdiplomados/tarea1'
       command: 'push'
       tags: 'latest'
