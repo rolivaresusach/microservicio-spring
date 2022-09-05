@@ -1,4 +1,10 @@
 pool:
+- task: AzureCLI@2
+  inputs:
+    scriptType: 'pscore'
+    scriptLocation: 'scriptPath'
+    scriptPath: 'gradle'
+    arguments: 'build'
   vmImage: ubuntu-latest
 
 steps:
