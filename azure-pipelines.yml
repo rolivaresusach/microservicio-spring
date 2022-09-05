@@ -66,7 +66,8 @@ steps:
     downloadPath: '$(Pipeline.Workspace)'
   displayName: Descarga Jar
     
-- script: "mkdir -p build/libs; mv $(Pipeline.Workspace)/appJar/build/libs/ build/; chmod -R 555 build/libs"  
+#- script: "mkdir -p build/libs; mv $(Pipeline.Workspace)/appJar/build/libs/ build/; chmod -R 555 build/libs"  
+- script: "mkdir -p build/libs; mv $(Pipeline.Workspace)/appJar/build/libs/ build/"
   displayName:  Se mueve JAR a carpeta raiz
 
 - task: Docker@2
