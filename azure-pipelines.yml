@@ -93,5 +93,5 @@ steps:
       containerRegistry: 'docker-hub-usach'
       repository: 'rolivaresdiplomados/tarea1'
       command: 'buildAndPush'
-      tags: 'latest'
+      tags: 'v$(Build.BuildId)'
       Dockerfile: '**/Dockerfile'
