@@ -1,0 +1,4 @@
+.dccache
+.gradle
+build
+bin
