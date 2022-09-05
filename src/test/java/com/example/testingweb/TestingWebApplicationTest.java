@@ -13,6 +13,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @SpringBootTest
 @AutoConfigureMockMvc
 public class TestingWebApplicationTest {
@@ -21,8 +23,14 @@ public class TestingWebApplicationTest {
 	private MockMvc mockMvc;
 
 	@Test
+	public void main() {
+		TestingWebApplication.main(new String[] {});
+	}
+
+	@Test
 	public void shouldReturnDefaultMessage() throws Exception {
 		this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
-				.andExpect(content().string(containsString("Finaliza el curso DevOps Foundation v2 - Rodrigo Olivares")));
+				.andExpect(
+						content().string(containsString("Finaliza el curso DevOps Foundation v2 - Rodrigo Olivares")));
 	}
 }
