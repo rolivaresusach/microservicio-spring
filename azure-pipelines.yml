@@ -77,7 +77,6 @@ stages:
       inputs:
         SonarCloud: 'sonar-cloud-usach'
         organization: 'cl-usach-diplomados-rolivares'
-
 - stage: Deploy
   jobs:
   - job: buildImage
@@ -109,6 +108,8 @@ stages:
           v$(Build.BuildId)
           latest
         Dockerfile: '**/Dockerfile'
+  - job: AKS
+    steps:
 
     - task: KubectlInstaller@0
       inputs:
