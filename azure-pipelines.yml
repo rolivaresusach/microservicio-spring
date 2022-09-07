@@ -146,6 +146,20 @@ stages:
         azureResourceGroup: 'tarea1-cluster'
         kubernetesCluster: 'tarea1-cluster'
         namespace: 'default'
+        command: 'delete'
+        arguments: 'services tarea1-app'
+        secretType: 'dockerRegistry'
+        containerRegistryType: 'Azure Container Registry'
+      continueOnError: true
+      displayName: AKS Delete
+
+    - task: Kubernetes@1
+      inputs:
+        connectionType: 'Azure Resource Manager'
+        azureSubscriptionEndpoint: 'Azure subscription 1(466bb1af-53ab-4320-b72a-7ed8b321590b)'        
+        azureResourceGroup: 'tarea1-cluster'
+        kubernetesCluster: 'tarea1-cluster'
+        namespace: 'default'
         command: 'expose'
         arguments: 'deployment tarea1-deployment --type=LoadBalancer --name=tarea1-app'
         secretType: 'dockerRegistry'
