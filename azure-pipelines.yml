@@ -13,7 +13,7 @@ stages:
       displayName: 'Build'
       inputs:
         gradleWrapperFile: 'gradlew'
-        tasks: 'build test'
+        tasks: 'build'
         publishJUnitResults: true
         testResultsFiles: '**/TEST-*.xml'
         javaHomeOption: 'JDKVersion'
@@ -26,7 +26,6 @@ stages:
         sourceFolder: '$(Build.SourcesDirectory)'
         contents: |
           **/build/libs/*.jar
-          **/build/**/*.xml
           **/application.properties
         targetFolder: '$(Build.ArtifactStagingDirectory)'
     - task: PublishBuildArtifacts@1
@@ -39,14 +38,7 @@ stages:
   jobs:
   - job: sonar
     steps:
-    - task: DownloadBuildArtifacts@0
-      displayName: 'SonarQube artifact'
-      inputs:
-        buildType: 'current'
-        downloadType: 'single'
-        artifactName: 'appJar'
-        downloadPath: '$(Pipeline.Workspace)'
-
+      
     - task: SonarCloudPrepare@1
       displayName: 'Sonarqube prepare'
       inputs:
@@ -55,7 +47,7 @@ stages:
         projectKey: 'devops-foundation-ms'
         projectName: 'devops-foundation-ms'
         extraProperties: |
-          sonar.coverage.jacoco.xmlReportPaths=$(Pipeline.Workspace)/appJar/build/reports/jacoco/test/jacocoTestReport.xml
+          sonar.coverage.jacoco.xmlReportPaths=$(Build.SourcesDirectory)/build/reports/jacoco/test/jacocoTestReport.xml
 
     - task: Gradle@3
       inputs:
